@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "newscrawl"
+version = "0.1.0"
+description = ""
+authors = ["pandatools <761326926@qq.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "~3.10"
+feapder = {extras = ["render"], version = "^1.9.0"}
+drissionpage = "^4.1.0.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

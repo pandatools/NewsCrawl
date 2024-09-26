@@ -13,39 +13,25 @@ import feapder
 from items.reply_item import ReplyItem
 from items.subject_item import SubjectItem
 import feapder.utils.tools
-
+from DrissionPage import Chromium
 class SpyderV2(feapder.AirSpider):
     platform = "https://www.v2ex.com/"
-    __custom_setting__ = dict(
-        RENDER_DOWNLOADER="feapder.network.downloader.PlaywrightDownloader",
-        PLAYWRIGHT=dict(
-            user_agent=None,  # 字符串 或 无参函数，返回值为user_agent
-            proxy=None,  # xxx.xxx.xxx.xxx:xxxx 或 无参函数，返回值为代理地址
-            headless=True,
-            driver_type="chromium",  # chromium、firefox、webkit
-            timeout=30,  # 请求超时时间
-            window_size=(1024, 800),  # 窗口大小
-            executable_path=None,  # 浏览器路径，默认为默认路径
-            download_path=None,  # 下载文件的路径
-            render_time=0,  # 渲染时长，即打开网页等待指定时间后再获取源码
-            wait_until="networkidle",  # 等待页面加载完成的事件,可选值："commit", "domcontentloaded", "load", "networkidle"
-            use_stealth_js=False,  # 使用stealth.min.js隐藏浏览器特征
-            # page_on_event_callback=dict(response=on_response),  # 监听response事件
-            # page.on() 事件的回调 如 page_on_event_callback={"dialog": lambda dialog: dialog.accept()}
-            storage_state_path=None,  # 保存浏览器状态的路径
-            url_regexes=["wallpaper/list"],  # 拦截接口，支持正则，数组类型
-            save_all=True,  # 是否保存所有拦截的接口
-        ),
-    )
+
     def start_requests(self):
-        yield feapder.Request("https://www.v2ex.com/?tab=hot", callback=self.parse_list)
+        tab = Chromium().latest_tab
+        tab.get("https://www.v2ex.com/")
+        yield feapder.Request("https://www.v2ex.com/?tab=hot", callback=self.parse_list,tab=tab)
         # for i in range(1,21):
         #     yield feapder.Request(f"https://www.v2ex.com/recent?p={str(i)}",callback=self.parse_list)
 
+    def download_midware(self,request):
+        tab = request.tab
+        url = request.url
+        tab.get(url)
+        return request,tab.response
+
     def shift_time(self,date_string):
         format_string = "%Y-%m-%d %H:%M:%S %z"
-
-        # Convert the string to a datetime object
         return datetime.strptime(date_string, format_string)
     def parse_list(self, request, response):
        for item in response.xpath('.//div[@class="box"]/div[@class="cell item"]'):
@@ -63,7 +49,7 @@ class SpyderV2(feapder.AirSpider):
                 "replys": {},
                 "platform":self.platform,
             }
-            yield feapder.Request(url,callback=self.parse_content,res=res,page=1,base_url =url )
+            yield feapder.Request(url,callback=self.parse_content,res=res,page=1,base_url =url,tab=request.tab )
 
     def parse_content(self, request,response):
 

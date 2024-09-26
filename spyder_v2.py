@@ -91,7 +91,7 @@ class SpyderV2(feapder.AirSpider):
             page = request.page +1
             base_url = request.base_url
             reply_url = base_url + "?p=" + str(page)
-            yield feapder.Request(reply_url,callback=self.parse_content,res=res,page=page,base_url =base_url )
+            yield feapder.Request(reply_url,callback=self.parse_content,res=res,page=page,base_url =base_url,tab=request.tab )
 
 
 if __name__ == "__main__":

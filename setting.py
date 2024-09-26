@@ -39,10 +39,10 @@ MYSQL_USER_PASS = "asdfgh123123"
 # COLLECTOR_TASK_COUNT = 32  # 每次获取任务数量，追求速度推荐32
 #
 # # SPIDER
-# SPIDER_THREAD_COUNT = 1  # 爬虫并发数，追求速度推荐32
-# # 下载时间间隔 单位秒。 支持随机 如 SPIDER_SLEEP_TIME = [2, 5] 则间隔为 2~5秒之间的随机数，包含2和5
-# SPIDER_SLEEP_TIME = 0
-# SPIDER_MAX_RETRY_TIMES = 10  # 每个请求最大重试次数
+SPIDER_THREAD_COUNT = 1  # 爬虫并发数，追求速度推荐32
+# 下载时间间隔 单位秒。 支持随机 如 SPIDER_SLEEP_TIME = [2, 5] 则间隔为 2~5秒之间的随机数，包含2和5
+SPIDER_SLEEP_TIME = 0.3
+SPIDER_MAX_RETRY_TIMES = 3  # 每个请求最大重试次数
 # KEEP_ALIVE = False  # 爬虫是否常驻
 
 # 下载
@@ -52,46 +52,6 @@ MYSQL_USER_PASS = "asdfgh123123"
 # # RENDER_DOWNLOADER="feapder.network.downloader.PlaywrightDownloader",
 # MAKE_ABSOLUTE_LINKS = True  # 自动转成绝对连接
 
-# # 浏览器渲染
-# WEBDRIVER = dict(
-#     pool_size=1,  # 浏览器的数量
-#     load_images=True,  # 是否加载图片
-#     user_agent=None,  # 字符串 或 无参函数，返回值为user_agent
-#     proxy=None,  # xxx.xxx.xxx.xxx:xxxx 或 无参函数，返回值为代理地址
-#     headless=False,  # 是否为无头浏览器
-#     driver_type="CHROME",  # CHROME、EDGE、PHANTOMJS、FIREFOX
-#     timeout=30,  # 请求超时时间
-#     window_size=(1024, 800),  # 窗口大小
-#     executable_path=None,  # 浏览器路径，默认为默认路径
-#     render_time=0,  # 渲染时长，即打开网页等待指定时间后再获取源码
-#     custom_argument=[
-#         "--ignore-certificate-errors",
-#         "--disable-blink-features=AutomationControlled",
-#     ],  # 自定义浏览器渲染参数
-#     xhr_url_regexes=None,  # 拦截xhr接口，支持正则，数组类型
-#     auto_install_driver=True,  # 自动下载浏览器驱动 支持chrome 和 firefox
-#     download_path=None,  # 下载文件的路径
-#     use_stealth_js=False,  # 使用stealth.min.js隐藏浏览器特征
-# )
-#
-# PLAYWRIGHT = dict(
-#     user_agent=None,  # 字符串 或 无参函数，返回值为user_agent
-#     proxy=None,  # xxx.xxx.xxx.xxx:xxxx 或 无参函数，返回值为代理地址
-#     headless=False,  # 是否为无头浏览器
-#     driver_type="chromium",  # chromium、firefox、webkit
-#     timeout=30,  # 请求超时时间
-#     window_size=(1024, 800),  # 窗口大小
-#     executable_path=None,  # 浏览器路径，默认为默认路径
-#     download_path=None,  # 下载文件的路径
-#     render_time=0,  # 渲染时长，即打开网页等待指定时间后再获取源码
-#     wait_until="networkidle",  # 等待页面加载完成的事件,可选值："commit", "domcontentloaded", "load", "networkidle"
-#     use_stealth_js=False,  # 使用stealth.min.js隐藏浏览器特征
-#     page_on_event_callback=None,  # page.on() 事件的回调 如 page_on_event_callback={"dialog": lambda dialog: dialog.accept()}
-#     storage_state_path=None,  # 保存浏览器状态的路径
-#     url_regexes=None,  # 拦截接口，支持正则，数组类型
-#     save_all=False,  # 是否保存所有拦截的接口, 配合url_regexes使用，为False时只保存最后一次拦截的接口
-# )
-#
 # # 爬虫启动时，重新抓取失败的requests
 # RETRY_FAILED_REQUESTS = False
 # # 保存失败的request
@@ -162,17 +122,17 @@ MYSQL_USER_PASS = "asdfgh123123"
 # WARNING_LEVEL = "DEBUG"  # 报警级别， DEBUG / INFO / ERROR
 # WARNING_FAILED_COUNT = 1000  # 任务失败数 超过WARNING_FAILED_COUNT则报警
 #
-# LOG_NAME = os.path.basename(os.getcwd())
-# LOG_PATH = "log/%s.log" % LOG_NAME  # log存储路径
-# LOG_LEVEL = "DEBUG"
-# LOG_COLOR = True  # 是否带有颜色
-# LOG_IS_WRITE_TO_CONSOLE = True  # 是否打印到控制台
-# LOG_IS_WRITE_TO_FILE = False  # 是否写文件
-# LOG_MODE = "w"  # 写文件的模式
-# LOG_MAX_BYTES = 10 * 1024 * 1024  # 每个日志文件的最大字节数
-# LOG_BACKUP_COUNT = 20  # 日志文件保留数量
-# LOG_ENCODING = "utf8"  # 日志文件编码
-# OTHERS_LOG_LEVAL = "ERROR"  # 第三方库的log等级
+LOG_NAME = os.path.basename(os.getcwd())
+LOG_PATH = "log/%s.log" % LOG_NAME  # log存储路径
+LOG_LEVEL = "DEBUG"
+LOG_COLOR = True  # 是否带有颜色
+LOG_IS_WRITE_TO_CONSOLE = True  # 是否打印到控制台
+LOG_IS_WRITE_TO_FILE = True  # 是否写文件
+LOG_MODE = "w"  # 写文件的模式
+LOG_MAX_BYTES = 10 * 1024 * 1024  # 每个日志文件的最大字节数
+LOG_BACKUP_COUNT = 20  # 日志文件保留数量
+LOG_ENCODING = "utf8"  # 日志文件编码
+OTHERS_LOG_LEVAL = "ERROR"  # 第三方库的log等级
 #
 # # 切换工作路径为当前项目路径
 # project_path = os.path.abspath(os.path.dirname(__file__))

@@ -6,19 +6,27 @@ Created on 2024-09-20 14:14:32
 ---------
 @author: ysl
 """
+import logging
 from datetime import datetime
 
 import feapder
-
+from DrissionPage._configs.chromium_options import ChromiumOptions
+from feapder.utils.log import log
 from items.reply_item import ReplyItem
 from items.subject_item import SubjectItem
 import feapder.utils.tools
 from DrissionPage import Chromium
+
+from spyders.common import create_chrome
+
+
 class SpyderV2(feapder.AirSpider):
     platform = "https://www.v2ex.com/"
 
     def start_requests(self):
-        tab = Chromium().latest_tab
+        log.info('v1')
+        chrome = create_chrome()
+        tab = chrome.latest_tab
         tab.get("https://www.v2ex.com/")
         yield feapder.Request("https://www.v2ex.com/?tab=hot", callback=self.parse_list,tab=tab)
         # for i in range(1,21):

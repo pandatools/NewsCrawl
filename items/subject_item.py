@@ -26,3 +26,6 @@ class SubjectItem(Item):
         self.url = kwargs.get('url')
         self.id = tools.get_md5(self.title,self.url)
         self.platform = kwargs.get('platform')
+    def pre_to_db(self):
+        self.reply_time = self.reply_time.strftime('%Y-%m-%d %H:%M:%S')
+        print(1)

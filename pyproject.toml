@@ -9,6 +9,7 @@ readme = "README.md"
 python = "~3.10"
 feapder = {extras = ["render"], version = "^1.9.0"}
 drissionpage = "^4.1.0.4"
+dynaconf = "^3.2.6"
 
 
 [build-system]

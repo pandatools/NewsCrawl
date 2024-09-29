@@ -23,3 +23,6 @@ class ReplyItem(Item):
         self.reply_id = kwargs.get('reply_id')
         self.content = kwargs.get('content')
         self.reply_time = kwargs.get('reply_time')
+
+    def pre_to_db(self):
+        self.reply_time = self.reply_time.strftime('%Y-%m-%d %H:%M:%S')

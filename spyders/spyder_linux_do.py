@@ -10,17 +10,22 @@ from datetime import datetime
 
 import feapder
 from DrissionPage import Chromium
-from feapder.utils.webdriver import PlaywrightDriver, InterceptResponse, InterceptRequest
+from DrissionPage._configs.chromium_options import ChromiumOptions
 
 from items.reply_item import ReplyItem
 from items.subject_item import SubjectItem
+from feapder.utils.log import log
+
+from spyders.common import create_chrome
 
 
 # 访问网址
 class SpyderLinuxDo(feapder.AirSpider):
     platform = "https://linux.do/"
     def start_requests(self):
-        tab = Chromium().latest_tab
+        log.info('v1')
+        chrome = create_chrome()
+        tab = chrome.latest_tab
         tab.get("https://linux.do/latest")
         yield feapder.Request("https://linux.do/latest.json?no_definitions=true&page=0",tab=tab)
 

@@ -2,13 +2,16 @@
 """爬虫配置文件"""
 import os
 import sys
+
+from config import dy_settings
+
 #
 # # MYSQL
-MYSQL_IP = "localhost"
-MYSQL_PORT = 3306
-MYSQL_DB = "ow-nl"
-MYSQL_USER_NAME = "root"
-MYSQL_USER_PASS = "asdfgh123123"
+MYSQL_IP = dy_settings.mysql.MYSQL_IP
+MYSQL_PORT = dy_settings.mysql.MYSQL_PORT
+MYSQL_DB = dy_settings.mysql.MYSQL_DB
+MYSQL_USER_NAME =  dy_settings.mysql.MYSQL_USER_NAME
+MYSQL_USER_PASS = dy_settings.mysql.MYSQL_USER_PASS
 #
 # # MONGODB
 # MONGO_IP = "localhost"
@@ -41,7 +44,7 @@ MYSQL_USER_PASS = "asdfgh123123"
 # # SPIDER
 SPIDER_THREAD_COUNT = 1  # 爬虫并发数，追求速度推荐32
 # 下载时间间隔 单位秒。 支持随机 如 SPIDER_SLEEP_TIME = [2, 5] 则间隔为 2~5秒之间的随机数，包含2和5
-SPIDER_SLEEP_TIME = 0.3
+SPIDER_SLEEP_TIME = [1, 3]
 SPIDER_MAX_RETRY_TIMES = 3  # 每个请求最大重试次数
 # KEEP_ALIVE = False  # 爬虫是否常驻
 

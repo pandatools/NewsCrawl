@@ -1,0 +1,22 @@
+default:
+  project_name: "NewsCrawl"
+
+dev:
+  mysql:
+    MYSQL_IP: localhost
+    MYSQL_PORT: 3306
+    MYSQL_DB: ow-nl
+    MYSQL_USER_NAME: root
+    MYSQL_USER_PASS: asdfgh123123
+  show_chrome:
+    true
+
+prod:
+  mysql:
+    MYSQL_IP: 1.tcp.vip.cpolar.top
+    MYSQL_PORT: 11324
+    MYSQL_DB: ow-nl
+    MYSQL_USER_NAME: root
+    MYSQL_USER_PASS: asdfgh123123
+  show_chrome:
+    false

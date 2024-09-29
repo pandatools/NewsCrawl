@@ -22,9 +22,9 @@ MYSQL_USER_PASS = dy_settings.mysql.MYSQL_USER_PASS
 #
 # # REDIS
 # # ip:port 多个可写为列表或者逗号隔开 如 ip1:port1,ip2:port2 或 ["ip1:port1", "ip2:port2"]
-# REDISDB_IP_PORTS = "localhost:6379"
-# REDISDB_USER_PASS = ""
-# REDISDB_DB = 0
+REDISDB_IP_PORTS = dy_settings.redis.REDISDB_IP_PORTS
+REDISDB_USER_PASS = dy_settings.redis.REDISDB_USER_PASS
+REDISDB_DB = dy_settings.redis.REDISDB_DB
 # # 适用于redis哨兵模式
 # REDISDB_SERVICE_NAME = ""
 #
@@ -92,14 +92,14 @@ SPIDER_MAX_RETRY_TIMES = 3  # 每个请求最大重试次数
 #
 # # 去重
 # ITEM_FILTER_ENABLE = False  # item 去重
-# REQUEST_FILTER_ENABLE = False  # request 去重
+REQUEST_FILTER_ENABLE = True  # request 去重
 # ITEM_FILTER_SETTING = dict(
 #     filter_type=1  # 永久去重（BloomFilter） = 1 、内存去重（MemoryFilter） = 2、 临时去重（ExpireFilter）= 3、轻量去重（LiteFilter）= 4
 # )
-# REQUEST_FILTER_SETTING = dict(
-#     filter_type=3,  # 永久去重（BloomFilter） = 1 、内存去重（MemoryFilter） = 2、 临时去重（ExpireFilter）= 3、 轻量去重（LiteFilter）= 4
-#     expire_time=2592000,  # 过期时间1个月
-# )
+REQUEST_FILTER_SETTING = dict(
+    filter_type=3,  # 永久去重（BloomFilter） = 1 、内存去重（MemoryFilter） = 2、 临时去重（ExpireFilter）= 3、 轻量去重（LiteFilter）= 4
+    expire_time=2592000,  # 过期时间1个月
+)
 #
 # # 报警 支持钉钉、飞书、企业微信、邮件
 # # 钉钉报警

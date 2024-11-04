@@ -26,10 +26,10 @@ jobs:
     - name: Build Docker Image
       run: |
         # 使用已有的Dockerfile构建镜像
-        docker build -t registry.cn-hangzhou.aliyuncs.com/feapderd/feaplat_worker:latest .
+        docker build -t registry.cn-hangzhou.aliyuncs.com/yslroot/feapderd:latest .
 
     - name: Push Docker Image
       run: |
         # 推送新镜像到阿里云
-        docker push registry.cn-hangzhou.aliyuncs.com/feapderd/feaplat_worker:latest
+        docker push registry.cn-hangzhou.aliyuncs.com/yslroot/feapderd:latest
 

@@ -5,7 +5,8 @@ import sys
 
 from config import dy_settings
 
-#
+
+
 # # MYSQL
 MYSQL_IP = dy_settings.mysql.MYSQL_IP
 MYSQL_PORT = dy_settings.mysql.MYSQL_PORT
@@ -82,7 +83,7 @@ SPIDER_MAX_RETRY_TIMES = 3  # 每个请求最大重试次数
 # PROXY_ENABLE = True
 #
 # # 随机headers
-# RANDOM_HEADERS = True
+RANDOM_HEADERS = True
 # # UserAgent类型 支持 'chrome', 'opera', 'firefox', 'internetexplorer', 'safari'，'mobile' 若不指定则随机类型
 # USER_AGENT_TYPE = "chrome"
 # # 默认使用的浏览器头
@@ -92,7 +93,7 @@ SPIDER_MAX_RETRY_TIMES = 3  # 每个请求最大重试次数
 #
 # # 去重
 # ITEM_FILTER_ENABLE = False  # item 去重
-REQUEST_FILTER_ENABLE = True  # request 去重
+REQUEST_FILTER_ENABLE = False  # request 去重
 # ITEM_FILTER_SETTING = dict(
 #     filter_type=1  # 永久去重（BloomFilter） = 1 、内存去重（MemoryFilter） = 2、 临时去重（ExpireFilter）= 3、轻量去重（LiteFilter）= 4
 # )

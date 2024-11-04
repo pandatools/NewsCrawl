@@ -13,18 +13,18 @@ class CustomRequestBufferNoEffort(RequestBuffer):
         :param request: 在
         :return:
         '''
-        import feapder.setting as setting
-        white_list = request.white_list or []
-        for white in white_list:
-            if white in request.url:
-                return False
-
-        if (
-                request.filter_repeat
-                and setting.REQUEST_FILTER_ENABLE
-                and not self.__class__.dedup.add(request.fingerprint)
-        ):
-            log.debug("request已存在  url = %s" % request.url)
-            return True
+        # import feapder.setting as setting
+        # white_list = request.white_list or []
+        # for white in white_list:
+        #     if white in request.url:
+        #         return False
+        #
+        # if (
+        #         request.filter_repeat
+        #         and setting.REQUEST_FILTER_ENABLE
+        #         and not self.__class__.dedup.add(request.fingerprint)
+        # ):
+        #     log.debug("request已存在  url = %s" % request.url)
+        #     return True
         return False
 

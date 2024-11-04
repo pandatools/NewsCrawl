@@ -38,7 +38,7 @@ class SpyderLinuxDo(feapder.Spider):
     def start_requests(self):
         log.info('v1')
 
-        yield feapder.Request("https://linux.do/latest.json?no_definitions=true&page=0",white_list=self.white_list)
+        yield feapder.Request("https://linux.do/latest.json?no_definitions=true&page=2",white_list=self.white_list)
 
     def shift_time(self,date_string):
         date_string = date_string.replace('Z', '+0000')

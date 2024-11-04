@@ -2,6 +2,7 @@ from dynaconf import Dynaconf
 
 
 
+
 dy_settings = Dynaconf(
     envvar_prefix="",
     environments=True,

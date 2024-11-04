@@ -1,0 +1,35 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: Build and Publish Docker Image
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Log in to Alibaba Cloud Docker Registry
+      run: |
+        echo "${{ secrets.ALIYUN_REGISTRY_PASSWORD }}" | docker login --username "${{ secrets.ALIYUN_REGISTRY_USERNAME }}" registry.cn-hangzhou.aliyuncs.com --password-stdin
+
+    - name: Build Docker Image
+      run: |
+        # 使用已有的Dockerfile构建镜像
+        docker build -t registry.cn-hangzhou.aliyuncs.com/feapderd/feaplat_worker:latest .
+
+    - name: Push Docker Image
+      run: |
+        # 推送新镜像到阿里云
+        docker push registry.cn-hangzhou.aliyuncs.com/feapderd/feaplat_worker:latest
+
